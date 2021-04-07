@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' name="description" content="location, localizador, geololizacion">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name="keywords" content="locationperson, location, localizador">
+    <title>location</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link rel="stylesheet" href="estilos.css">
+    <script src='main.js'></script>
+</head>
+
+<body>
+    <div class="content">
+        <h1>Loca<span>tion</span> </h1>
+
+        <div class="contact-wrapper">
+            <div class="contact-form">
+                <img src="imagen.jpg" class="img" alt="compu" usemap="#compu">
+                <map name="compu">
+                <area shape="rect" coords="34,44,270,350" href="https://api.whatsapp.com/send?phone=51981337843" alt="compu">
+                </map>
+            </div>
+            <!--geo-->
+            <div class="contact-info">
+                <p>Obtiene tus coordinadas</p>
+
+                <button onclick="getLocation()">Obtener</button>
+
+                <p id="demo"></p>
+
+                <script class="geo">
+                    var x = document.getElementById("demo");
+
+                    function getLocation() {
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(showPosition);
+                        } else {
+                            x.innerHTML = "Geolocation is not supported by this browser.";
+                        }
+                    }
+
+                    function showPosition(position) {
+                        x.innerHTML = "Latitude y long: " + position.coords.latitude +
+                            "," + position.coords.longitude;
+                    }
+
+                    function showError(error) {
+                        switch (error.code) {
+                            case error.PERMISSION_DENIED:
+                                x.innerHTML = "User denied the request for Geolocation."
+                                break;
+                            case error.POSITION_UNAVAILABLE:
+                                x.innerHTML = "Location information is unavailable."
+                                break;
+                            case error.TIMEOUT:
+                                x.innerHTML = "The request to get user location timed out."
+                                break;
+                            case error.UNKNOWN_ERROR:
+                                x.innerHTML = "An unknown error occurred."
+                                break;
+                        }
+                    }
+                </script>
+
+                <div class="contact-form">
+                    <form class="form" action="enviar.php" method="POST">
+                        <input type="text" name="nombre" placeholder="nombre" required>
+                        <input type="tel" name="Latitude" placeholder="Copia aqui latitude y long." required>
+                        <button type="submit">ENVIAR</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
